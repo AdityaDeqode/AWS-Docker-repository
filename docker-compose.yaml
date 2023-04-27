@@ -1,0 +1,26 @@
+version: '2'
+services:
+    message-server:
+        container_name: message-server
+        build:
+            context: ./demo
+            dockerfile: Dockerfile
+        image: demo:latest
+        ports:
+            - 8081:8081
+        networks:
+            - spring-cloud-network
+    product-server:
+        container_name: product-server
+        build:
+            context: ./demo2
+            dockerfile: Dockerfile
+        image: demo2:latest
+        ports:
+            - 8080:8080
+        networks:
+            - spring-cloud-network
+   
+networks:
+    spring-cloud-network:
+        driver: bridge
